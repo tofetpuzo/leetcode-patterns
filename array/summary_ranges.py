@@ -39,6 +39,7 @@ def summary_ranges(nums):
         :type nums: List[int]
         :rtype: List[str]
     """
+<<<<<<< Updated upstream
     if not nums:
         return []
     
@@ -58,3 +59,25 @@ def summary_ranges(nums):
 
     return res
 
+=======
+    res = []
+    i = 0
+    while i < len(nums):
+        start = i
+        while i + 1 < len(nums) and nums[i + 1] == nums[i] + 1:
+            i += 1
+        if start == i:
+            res.append(str(nums[start]))
+        else:
+            res.append(str(nums[start]) + "->" + str(nums[i]))
+        i += 1
+    return res
+
+# Time: O(n)
+# Space: O(1)
+
+# Test case
+nums = [0, 1, 2, 4, 5, 7]
+
+print(summary_ranges(nums))  # ["0->2", "4->5", "7"]
+>>>>>>> Stashed changes
