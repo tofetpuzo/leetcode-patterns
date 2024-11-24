@@ -24,30 +24,17 @@
 # s and t consist only of lowercase English letters.
  
 
-# Follow up: Suppose there are lots of incoming s, say s1, s2, ..., \
-# sk where k >= 109, and you want to check one by one to see if t has its subsequence. 
-# In this scenario, how would you change your code?
-def isSubsequence(s: str, t: str) -> bool:
-    i = 0
-    j = 0
+# Follow up: Suppose there are lots of incoming s, say s1, s2, ..., sk where k >= 109, and you want to check one by one to see if t has its subsequence. In this scenario, how would you change your code?
+
+def is_subsequence(s, t):
+    """
+    :type s: str
+    :type t: str
+    :rtype: bool
+    """
+    i, j = 0, 0
     while i < len(s) and j < len(t):
         if s[i] == t[j]:
             i += 1
         j += 1
-
     return i == len(s)
-
-# Time: O(n)
-# Space: O(1)
-
-# Test case
-s = "abc"
-t = "ahbgdc"
-
-print(isSubsequence(s, t))  # True
-
-# Test case
-s = "axc"
-t = "ahbgdc"
-
-print(isSubsequence(s, t))  # False
