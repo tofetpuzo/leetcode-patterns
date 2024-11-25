@@ -48,7 +48,7 @@ def can_finish(numCourses, prerequisites):
     for i in range(numCourses):
         graph[i] = []
     for course, pre in prerequisites:
-        graph[pre].append(course)
+        graph[course].append(pre)
     visited = [0] * numCourses
 
     def dfs(node):
@@ -73,6 +73,61 @@ def can_finish(numCourses, prerequisites):
 # Space complexity: O(V+E)
 
 # test case
+numCourses = 2
+prerequisites = [[1, 0]]
+print(can_finish(numCourses, prerequisites))
+
+
+numCourses = 2
+prerequisites = [[1, 0], [0, 1]]
+print(can_finish(numCourses, prerequisites))
+
+
+numCourses = 3
+prerequisites = [[1, 0], [2, 1]]
+print(can_finish(numCourses, prerequisites))
+
+
+def can_finish(numCourses, prerequisites):
+ # build the graph
+
+	from collections import defaultdict
+	graph = defaultdict(list)
+
+	for course, prep in prerequisites:
+		graph[course].append(prep)
+
+	UNVISITED = 0
+	VISITING = 1
+	VISITED = 2
+	states = [UNVISITED] * numCourses
+
+	def dfs(node):
+		current_state = states[node]
+
+		if current_state == VISITED:
+			return True
+
+		elif current_state == VISITING:
+			return False
+
+		states[node] = VISITING
+
+		for nei in graph[node]:
+			if not dfs(nei):
+				return False
+
+		states[node] = VISITED
+		return True
+
+	for i in range(numCourses):
+		if not dfs(i):
+			return False
+
+	return True
+
+print("new test cases")
+
 numCourses = 2
 prerequisites = [[1, 0]]
 print(can_finish(numCourses, prerequisites))
