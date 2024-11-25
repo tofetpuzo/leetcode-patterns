@@ -40,28 +40,38 @@
 # There are no duplicate edges.
 # There are no self edges.
 
-def validPath(self, n, edges, source, destination):
-    """
-        :type n: int
-        :type edges: List[List[int]]
-        :type source: int
-        :type destination: int
-        :rtype: bool
-        """
 
-    from collections import defaultdict
-    graph = defaultdict(list)
-    for u, v in edges:
+def valid_path(n, edges, source, destination):
+    """
+    :type n: int
+    :type edges: List[List[int]]
+    :type source: int
+    :type destination: int
+    :rtype: bool
+    """
+    graph = {}
+    
+    # first create the graph
+    for i in range(n):
+        graph[i] = []
+
+    # add the edges
+    for u,v in edges:
         graph[u].append(v)
         graph[v].append(u)
+        
+    # check if there is a path from source to destination
     visited = set()
-    stack = [source]
-    while stack:
-        node = stack.pop()
+
+    # dfs function
+    def dfs(node):
         if node == destination:
             return True
-        if node in visited:
-            continue
         visited.add(node)
-        stack.extend(graph[node])
-    return False
+
+        for neighbor in graph[node]:
+            if neighbor not in visited and dfs(neighbor):
+                return True
+        return False
+    
+    return dfs(source)
