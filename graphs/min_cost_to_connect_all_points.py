@@ -31,69 +31,39 @@
 # 1 <= points.length <= 1000
 # -106 <= xi, yi <= 106
 # All pairs (xi, yi) are distinct.
-def minCostConnectPoints(points):
+import heapq
+
+def min_cost_connect_points(points):
     """
     :type points: List[List[int]]
     :rtype: int
     """
-    
-    rows = len(points)
-    cols = len(points[0])
-    
-    for i in range(rows):
-        points[i].append(i)
-        
-    edges = []
-    
-    for i in range(rows):
-        for j in range(i+1, rows):
-            edges.append([abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]), points[i][2], points[j][2]])
-            
-    edges.sort()
-    
-    parent = [i for i in range(rows)]
-    rank = [0] * rows
-    
-    def find(x):
-        if parent[x] != x:
-            parent[x] = find(parent[x])
-        return parent[x]
-    
-    def union(x, y):
-        px = find(x)
-        py = find(y)
-        
-        if px == py:
-            return False
-        
-        if rank[px] > rank[py]:
-            parent[py] = px
-        elif rank[px] < rank[py]:
-            parent[px] = py
-        else:
-            parent[px] = py
-            rank[py] += 1
-        
-        return True
-    
-    res = 0
-    count = 0
-    
-    for edge in edges:
-        if union(edge[1], edge[2]):
-            res += edge[0]
-            count += 1
-            if count == rows - 1:
-                break
-            
-    return res
-# Time complexity: O(n^2 * log(n))
 
-# Space complexity: O(n^2)
+    n = len(points)
+    total_cost = 0
+    seen = set()
+    min_heap = [(0, 0)]
+
+    while len(seen) < n:
+        dist , i = heapq.heappop(min_heap)
+
+        if i in seen:
+            continue
+        seen.add(i)
+        total_cost += dist
+
+        xi, yi = points[i]
+
+        for j in range(n):
+            if j not in seen:
+                xj, yj = points[j]
+                nei_dist = abs(xi - xj) +  abs(yi - yj)
+                heapq.heappush(min_heap, (nei_dist, j))
+
+
+    return total_cost
+
+# test case
 points = [[0,0],[2,2],[3,10],[5,2],[7,0]]
-print(minCostConnectPoints(points)) # 20
 
-    
-    
-    
-    
+print(min_cost_connect_points(points))
