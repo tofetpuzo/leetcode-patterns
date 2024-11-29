@@ -1,0 +1,95 @@
+No. 133: Clone Graph -> done
+No. 207: Course Schedule -> done
+No. 210: Course Schedule II -> done
+No. 269: Alien Dictionary
+No. 305: Number of Islands II -> done
+No. 399: Evaluate Division
+No. 402: Remove K Digits
+No. 444: Sequence Reconstruction
+No. 510: Inorder Successor in BST II
+No. 529: Minesweeper
+No. 743: Network Delay Time
+No. 802: Find Eventual Safe States
+No. 841: Keys and Rooms
+No. 1020: Number of Enclaves
+No. 1306: Jump Game III
+No. 1319: Number of Operations to Make Network Connected
+No. 1339: Maximum Product of Splitted Binary Tree
+No. 1376: Time Needed to Inform All Employees
+No. 1488: Avoid Flood in The City
+No. 1514: Path with Maximum Probability
+No. 1577: Number of Ways Where Square of Number is Equal to Product of Two Numbers
+No. 1606: Find Servers That Handled Most Requests
+No. 1644: Lowest Common Ancestor of a Binary Tree II
+No. 1654: Minimum Jumps to Reach Home
+No. 1697: Checking Existence of Edge Length Limited Paths
+No. 1971: Find if Path Exists in Graph
+No. 2003: Smallest Missing Genetic Value in Each Subtree
+No. 2076: Process Restricted Friend Requests
+No. 2146: K Highest Ranked Items Within a Price Range
+No. 2362: Number of Employees Who Met the Target
+No. 2382: Remove Graph Edge to Maximize Score
+No. 785: Is Graph Bipartite?
+No. 127: Word Ladder
+No. 1339: Maximum Product of Splitted Binary Tree
+No. 286: Walls and Gates
+No. 1631: Path With Minimum Effort
+No. 2100: Find Good Days to Rob the Bank
+No. 1203: Sort Items by Groups Respecting Dependencies
+No. 684: Redundant Connection
+No. 1337: The K Weakest Rows in a Matrix
+No. 847: Shortest Path Visiting All Nodes
+No. 1136: Parallel Courses
+No. 200: Number of Islands
+No. 417: Pacific Atlantic Water Flow
+No. 695: Max Area of Island
+No. 1326: Minimum Number of Taps to Open to Water a Garden
+No. 1937: Maximum Number of Points with Cost
+No. 1135: Minimum Cost to Connect Sticks
+No. 1192: Critical Connections in a Network
+No. 802: Find Eventual Safe States
+No. 1091: Shortest Path in Binary Matrix
+No. 1254: Number of Closed Islands
+No. 130: Surrounded Regions
+No. 994: Rotting Oranges
+No. 802: Find Eventual Safe States
+No. 1091: Shortest Path in Binary Matrix
+No. 999: Available Captures for Rook
+No. 763: Partition Labels
+No. 1222: Queens That Can Attack the King
+No. 743: Network Delay Time
+No. 1245: Tree Diameter
+No. 1546: Maximum Number of Non-Overlapping Subarrays With Sum Equals Target
+No. 1857: Largest Color Value in a Directed Graph
+No. 1976: Number of Ways to Arrive at Destination
+No. 1654: Minimum Jumps to Reach Home
+No. 1177: Can You Eat Your Favorite Dish
+No. 302: Smallest Rectangle Enclosing Black Pixels
+No. 1310: Sum of Subarray Minimums
+No. 1305: All Elements in Two Binary Search Trees
+No. 1187: Make Array Strictly Increasing
+No. 1631: Path With Minimum Effort
+No. 431: Encode N-ary Tree to Binary Tree
+No. 1584: Min Cost to Connect All Points
+No. 1094: Car Pooling
+No. 417: Pacific Atlantic Water Flow
+No. 785: Is Graph Bipartite?
+No. 924: Minimize Malware Spread
+No. 1644: Lowest Common Ancestor of a Binary Tree II
+No. 1319: Number of Operations to Make Network Connected
+No. 2436: Time to Live
+No. 2503: Design a Binary Search Tree with a sum property
+No. 433: Minimum Genetic Mutation
+No. 200: Number of Islands
+No. 1306: Jump Game III
+No. 1319: Number of Operations to Make Network Connected
+No. 1339: Maximum Product of Splitted Binary Tree
+No. 1293: Shortest Path in a Grid with Obstacles Elimination
+No. 1319: Number of Operations to Make Network Connected
+No. 1063: Number of Valid Subarrays
+No. 878: Nth Magical Number
+No. 763: Partition Labels
+No. 2134: Minimum Swaps to Group All 1's Together
+No. 981: Time Based Key-Value Store
+No. 785: Is Graph Bipartite?
+No. 1074: Number of Submatrices That Sum to Target
