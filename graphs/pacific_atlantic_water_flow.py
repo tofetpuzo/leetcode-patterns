@@ -46,3 +46,46 @@
 # n == heights[r].length
 # 1 <= m, n <= 200
 # 0 <= heights[r][c] <= 105
+
+def pacificAtlantic(heights):
+    """
+    :type heights: List[List[int]]
+    :rtype: List[List[int]]
+    """
+
+    def check(heights, row, col, ocean):
+        ocean[row][col] = True
+
+        lst = [[row+1, col], [row-1, col], [row, col+1], [row, col-1]]
+        for r, c in lst:
+            if 0 <= r < len(heights) and 0 <= c < len(heights[0]) and heights[r][c] >= heights[row][col] and not ocean[r][c]:
+                check(heights, r, c, ocean)
+
+    pac = [[False for _ in range(len(heights[0]))]
+           for _ in range(len(heights))]
+    atl = [[False for _ in range(len(heights[0]))]
+           for _ in range(len(heights))]
+    for i in range(len(heights)):
+        check(heights, i, 0, pac)
+        check(heights, i, len(heights[0])-1, atl)
+
+    for i in range(len(heights[0])):
+        check(heights, 0, i, pac)
+        check(heights, len(heights)-1, i, atl)
+
+    
+    res = []
+    for i in range(len(heights)):
+        for j in range(len(heights[0])):
+            if pac[i][j] and atl[i][j]:
+                res.append([i, j])
+
+    return res
+
+# Complexity Analysis
+
+# test cases
+heights = [[1, 2, 2, 3, 5], [3, 2, 3, 4, 4], [
+     2, 4, 5, 3, 1], [6, 7, 1, 4, 5], [5, 1, 1, 2, 4]]
+
+print(pacificAtlantic(heights)) # [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]
