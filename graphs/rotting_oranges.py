@@ -35,6 +35,10 @@
 # n == grid[i].length
 # 1 <= m, n <= 10
 # grid[i][j] is 0, 1, or 2.
+
+from collections import deque
+
+
 def orangesRotting(grid):
     """
         :type grid: List[List[int]]
@@ -43,34 +47,47 @@ def orangesRotting(grid):
     EMPTY = 0
     FRESH = 1
     ROTTEN = 2
+    
+    num_of_fresh = 0
+    q = deque()
 
     rows = len(grid)
     cols = len(grid[0])
 
-    def dfs(grid, row, col, minutes):
-        if row < 0 or row >= rows or col < 0 or col >= cols or grid[row][col] != FRESH:
-            return
-        grid[row][col] = minutes
-        dfs(grid, row + 1, col, minutes + 1)
-        dfs(grid, row - 1, col, minutes + 1)
-        dfs(grid, row, col + 1, minutes + 1)
-        dfs(grid, row, col - 1, minutes + 1)
+    # populate the grid to know the fresh, rotten and empty oranges
+    for i in range(rows):
+        for j in range(cols):
+            if grid[i][j] == FRESH:
+                num_of_fresh += 1
+            elif grid[i][j] == ROTTEN:
+                q.append((i, j))
     
+    # check for the 4 directions
+    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     minutes = 0
-    while True:
-        changed = False
-        for row in range(rows):
-            for col in range(cols):
-                if grid[row][col] == ROTTEN:
-                    dfs(grid, row, col, minutes + 1)
-                    changed = True
-        if not changed:
-            break
-        minutes += 1
-    if any(FRESH in row for row in grid):
-        return -1
     
-    return minutes
+    while q:
+        for _ in range(len(q)):
+            i, j = q.popleft()
+            for dx, dy in directions:
+                x = i + dx
+                y = j + dy
+                if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] != FRESH:
+                    continue
+                grid[x][y] = ROTTEN
+                num_of_fresh -= 1
+                q.append((x, y))
+        minutes += 1
+    # if there are no fresh oranges, return the minutes
+    if num_of_fresh == EMPTY:
+        return minutes - 1
+    
+    # if there are fresh oranges, return -1
+    return -1
+        
+# Complexity Analysis
+# The time complexity for this approach is O(m*n) where m is the number of rows and n is the number of columns in the grid.s
+    
 
 
 # Time: O(m*n)
