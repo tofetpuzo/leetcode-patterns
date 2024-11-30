@@ -45,3 +45,57 @@
 # 1.1M
 # Acceptance Rate
 # 36.2%
+
+
+def alien_order(words):
+    """
+    :type words: List[str]
+    :rtype: str
+    """
+    graph = {char: [] for word in words for char in word}
+    
+    for word_1, word_2 in zip(words, words[1:]):
+        for i in range(min(len(word_1), len(word_2))):
+            if word_1[i] != word_2[i]:
+                graph[word_2[i]].append(word_1[i])
+                break
+        else:
+            if len(word_1) > len(word_2):
+                return ""
+            
+    res = []
+    white = set(graph.keys())
+    black = set()
+    grey = set()
+    
+    def dfs(node, white, black, grey, res):
+        # we moving the white node to 
+        
+        move_node(node, white, grey)
+        
+        for parent in graph[node]:
+            if parent in black:
+                continue
+            if parent in grey:
+                return False
+            if not dfs(parent, white, black, grey, res):
+                return False
+            
+        move_node(node, grey, black)
+        res.append(node)
+        return True
+        
+        
+    def move_node(node, current: set, target: set):
+        current.discard(node)
+        target.add(node)
+    
+    while white:
+        node = next(iter(white))
+        
+        if not dfs(node, graph, white, black, grey, res):
+            return ""
+        
+    return "".join(res) 
+    
+    
