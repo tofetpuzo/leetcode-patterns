@@ -5,6 +5,7 @@ No. 269: Alien Dictionary
 No. 305: Number of Islands II -> done
 No. 399: Evaluate Division
 No. 402: Remove K Digits
+No. 2709. Greatest Common Divisor Traversal
 No. 444: Sequence Reconstruction
 No. 510: Inorder Successor in BST II
 No. 529: Minesweeper

@@ -56,6 +56,8 @@
 # Acceptance Rate
 # 62.4%
 
+from collections import defaultdict
+
 def calc_equation(equations, values, queries):
     """
     :type equations: List[List[str]]
@@ -63,8 +65,102 @@ def calc_equation(equations, values, queries):
     :type queries: List[List[str]]
     :rtype: List[float]
     """
+
+    # Step 1: Build the graph
+    graph = defaultdict(dict)
     
+    for (dividend, divisor), value in zip(equations, values):
+        graph[dividend][divisor] = value
+        graph[divisor][dividend] = 1 / value
     
-    
-    
+    # Step 2: DFS helper function
+    def dfs(node, target, visited):
+        if node not in graph or target not in graph:
+            return -1.0
+        if node == target:
+            return 1.0
         
+        visited.add(node)
+        
+        for neighbor, value in graph[node].items():
+            if neighbor not in visited:
+                result = dfs(neighbor, target, visited)
+                if result != -1.0:  # Found a valid path
+                    return result * value
+        
+        return -1.0  # No valid path found
+    
+    # Step 3: Evaluate each query
+    results = []
+    for dividend, divisor in queries:
+        if dividend not in graph or divisor not in graph:
+            results.append(-1.0)
+        elif dividend == divisor:
+            results.append(1.0)
+        else:
+            results.append(dfs(dividend, divisor, set()))
+    
+    return results
+
+    
+equations = [["a", "b"], ["b", "c"]]
+values = [2.0, 3.0]
+queries = [["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"]]
+print(calc_equation(equations, values, queries))
+
+
+
+# using bfs 
+from collections import defaultdict, deque
+
+def cal_equation(equations, values, queries):
+    # create an adjacent list
+    adj = defaultdict(list)
+
+    for i, eq in enumerate(equations):
+        var1, var2 = eq
+        adj[var1].append([var2, values[i]])
+        adj[var2].append([var1, 1 / values[i]])
+
+
+    # bfs of the graph
+    def bfs(src, target):
+        if src not in adj or target not in adj:
+            return -1
+
+        queue_graph , visit = deque(), set()
+
+        queue_graph.append([src, 1])
+
+        visit.add(src)
+
+        while queue_graph:
+            node, w = queue_graph.popleft()
+
+            if node == target:
+                return w
+
+            for nei, weight in adj[node]:
+                if nei not in visit:
+                    queue_graph.append([nei, w * weight])
+                    visit.add(nei)
+
+
+        return -1 
+    
+    return [bfs(src, target) for src, target in queries]
+
+equations = [["a", "b"], ["b", "c"]]
+values = [2.0, 3.0]
+queries = [["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"]]
+
+print(cal_equation(equations, values, queries))
+
+
+# test case 2
+equations = [["a", "b"], ["b", "c"], ["bc", "cd"]]
+
+values = [1.5, 2.5, 5.0]
+
+queries = [["a", "c"], ["c", "b"], ["bc", "cd"], ["cd", "bc"]]
+print(cal_equation(equations, values, queries)) # [3.75000, 0.40000, 5.00000, 0.20000] 
