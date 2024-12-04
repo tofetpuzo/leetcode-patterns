@@ -44,3 +44,12 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: bool
         """
+        
+        def is_valid(node, lower, upper):
+            if not node:
+                return True
+            if node.val <= lower or node.val >= upper:
+                return False
+            return is_valid(node.right, node.val, upper) and is_valid(node.left, lower, node.val)
+        
+        return is_valid(root, float('-inf'), float('inf'))  
