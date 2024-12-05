@@ -98,7 +98,12 @@ class Trie(object):
 
 
 # Your Trie object will be instantiated and called as such:
-# obj = Trie()
-# obj.insert(word)
-# param_2 = obj.search(word)
-# param_3 = obj.startsWith(prefix)
+
+word = "apple"
+prefix = "app"
+obj = Trie()
+obj.insert(word)
+param_2 = obj.search(word)
+param_3 = obj.startsWith(prefix)
+
+print(param_2, param_3)
