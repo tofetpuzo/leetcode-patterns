@@ -40,11 +40,20 @@
 # word and prefix consist only of lowercase English letters.
 # At most 3 * 104 calls in total will be made to insert, search, and startsWith.
 
+class TrieNode:
+    def __init__(self, char):
+        self.children = {}
+        self.char = char
+        self.is_end = False
+
 
 class Trie(object):
 
     def __init__(self):
-        pass
+        """
+        Initialize your data structure here.
+        """
+        self.trie = TrieNode("#")
 
     def insert(self, word):
         """
@@ -52,17 +61,40 @@ class Trie(object):
         :rtype: None
         """
 
+        root = self.trie
+        for char in word:
+            if char not in root.children:
+                root.children[char] = TrieNode(char)
+            root = root.children[char]
+
+        root.is_end = True
+
     def search(self, word):
         """
         :type word: str
         :rtype: bool
         """
+            
+        root = self.trie
+        for char in word:
+            if char not in root.children:
+                return False
+            root = root.children[char]
+
+        return root.is_end
 
     def startsWith(self, prefix):
         """
         :type prefix: str
         :rtype: bool
         """
+        root = self.trie
+        for char in prefix:
+            if char not in root.children:
+                return False
+            root = root.children[char]
+
+        return True
 
 
 # Your Trie object will be instantiated and called as such:
