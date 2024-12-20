@@ -62,9 +62,11 @@ class Node(object):
 
 def cloneGraph(node):
     """
-        :type node: Node
-        :rtype: Node
-        """
+    :type node: Node
+    :rtype: Node
+    
+    - create a visited dictionary to store the visited nodes
+    """
     
     def clone(node, visited):
         # check if the node is in the visited dictionary
