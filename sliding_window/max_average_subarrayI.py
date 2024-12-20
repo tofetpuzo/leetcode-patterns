@@ -4,7 +4,9 @@
 # Companies
 # You are given an integer array nums consisting of n elements, and an integer k.
 
-# Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
+# Find a contiguous subarray whose length is equal to k
+# that has the maximum average value and return this value.
+# Any answer with a calculation error less than 10-5 will be accepted.
 
 
 # Example 1:
@@ -24,9 +26,33 @@
 # 1 <= k <= n <= 105
 # -104 <= nums[i] <= 104
 
-def find_max_average(self, nums, k):
+def find_max_average(nums, k):
     """
     :type nums: List[int]
     :type k: int
     :rtype: float
     """
+
+    current_sum = 0
+    n = len(nums)
+    # build the initial window
+    for i in range(k):
+        current_sum += nums[i]
+
+    max_avg = current_sum / k
+    for i in range(k, n):
+        current_sum += nums[i]
+        current_sum -= nums[i - k]
+        avg_sum = current_sum / k
+        max_avg = max(max_avg, avg_sum)
+
+    return max_avg
+
+# Time complexity: O(n)
+# Space complexity: O(1)
+
+
+# test case
+nums = [1, 12, -5, -6, 50, 3]
+k = 4
+print(find_max_average(nums, k))  # 12.75
