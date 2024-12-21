@@ -41,9 +41,9 @@
 # Acceptance Rate
 # 48.3%
 
-def minSubArrayLen(self, target, nums):
+def minSubArrayLen(target, nums):
     """
         :type target: int
         :type nums: List[int]
         :rtype: int
-        """
+    """
