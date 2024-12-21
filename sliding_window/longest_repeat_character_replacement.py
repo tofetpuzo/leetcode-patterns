@@ -30,6 +30,29 @@
 # s consists of only uppercase English letters.
 # 0 <= k <= s.length
 
+
+def character_replacements(s, k):
+    """
+        :type s: str
+        :type k: int
+        :rtype: int
+    """
+
+    longest_substring = 0
+    left_pointer = 0
+    max_freq = [0] * 26
+
+    for right_pointer in range(len(s)):
+        # Update the frequency of the current character
+        max_freq[ord(s[right_pointer]) - ord("A")] += 1
+        while(right_pointer - left_pointer + 1 - max(max_freq) > k):
+            max_freq[ord(s[left_pointer]) - ord("A")] -= 1
+            left_pointer += 1
+        longest_substring = max(longest_substring, right_pointer - left_pointer + 1)
+
+    return longest_substring
+
+
 def character_replacement(s, k):
     """
         :type s: str
@@ -74,6 +97,6 @@ s = "AABABBA"
 k = 1
 print(character_replacement(s, k))  # 4
 
-
-def character_replacements(s, k):
-    
+s = "AABABBA"
+k = 2
+print(character_replacements(s, k))  # 5
