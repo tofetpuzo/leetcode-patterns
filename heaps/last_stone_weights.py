@@ -39,6 +39,24 @@ def lastStoneWeight(stones):
     :type stones: List[int]
     :rtype: int
     """
+    from heapq import heapify, heappop, heappush
+
+    for i in range(len(stones)):
+        stones[i] *= -1
+
+    heapify(stones)
+
+    while len(stones) > 1:
+        largest = heappop(stones)
+        second_largest = heappop(stones)
+ 
+        if largest != second_largest:
+            heappush(stones, largest - second_largest)
+
+    if len(stones) == 1:
+        return -heappop(stones)
+    else:
+        return 0
 
 
 # Time complexity: O(nlogn)
@@ -93,4 +111,4 @@ stones = [
     29,
     30,
 ]
-print(lastStoneWeight(stones))  # 0
+print(lastStoneWeight(stones)) # 1
