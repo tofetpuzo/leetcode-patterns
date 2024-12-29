@@ -41,3 +41,10 @@ class Solution(object):
             else:
                 r = mid - 1
         return False
+
+# Time complexity: O(log n)
+# Space complexity: O(1)
+
+# test case
+num = 16
+print(Solution().isPerfectSquare(num))  # True
