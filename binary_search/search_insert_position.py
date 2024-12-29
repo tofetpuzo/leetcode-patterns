@@ -29,9 +29,10 @@
 # nums contains distinct values sorted in ascending order.
 # -104 <= target <= 104
 
+
 def searchInsert(self, nums, target):
     """
-         :type nums: List[int]
-         :type target: int
-         :rtype: int
-         """
+    :type nums: List[int]
+    :type target: int
+    :rtype: int
+    """
