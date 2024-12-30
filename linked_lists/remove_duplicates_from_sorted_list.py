@@ -20,6 +20,22 @@
 
 # Constraints:
 
+
 # The number of nodes in the list is in the range[0, 300].
 # -100 <= Node.val <= 100
 # The list is guaranteed to be sorted in ascending order.
+
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+class Solution(object):
+    def delete_duplicates(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
