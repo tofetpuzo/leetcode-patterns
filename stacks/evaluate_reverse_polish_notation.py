@@ -2,7 +2,8 @@
 # Medium
 # Topics
 # Companies
-# You are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation.
+# You are given an array of strings tokens that represents an arithmetic expression in
+# a Reverse Polish Notation.
 
 # Evaluate the expression. Return an integer that represents the value of the expression.
 
@@ -14,7 +15,7 @@
 # There will not be any division by zero.
 # The input represents a valid arithmetic expression in a reverse polish notation.
 # The answer and all the intermediate calculations can be represented in a 32-bit integer.
- 
+
 
 # Example 1:
 
@@ -37,15 +38,43 @@
 # = (0 + 17) + 5
 # = 17 + 5
 # = 22
- 
+
 
 # Constraints:
 
 # 1 <= tokens.length <= 104
 # tokens[i] is either an operator: "+", "-", "*", or "/", or an integer in the range [-200, 200].
-def evalRPN(tokens):
+def eval_RPN(tokens):
     """
     :type tokens: List[str]
     :rtype: int
     """
-        
+
+    stack = []
+    for token in tokens:
+        if token in "+-*/":
+            b = stack.pop()
+            a = stack.pop()
+            if token == "+":
+                stack.append(a + b)
+            elif token == "-":
+                stack.append(a - b)
+            elif token == "*":
+                stack.append(a * b)
+            else:
+                stack.append(int(a / b))
+        else:
+            stack.append(int(token))
+    return stack[0]
+
+# Time complexity: O(n)
+# Space complexity: O(n)
+
+
+# test case
+tokens = ["2", "1", "+", "3", "*"]
+print(eval_RPN(tokens))  # 9
+tokens = ["4", "13", "5", "/", "+"]
+print(eval_RPN(tokens))  # 6
+tokens = ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]
+print(eval_RPN(tokens))  # 22
