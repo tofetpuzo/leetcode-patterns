@@ -2,8 +2,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class SimilarPairs {
     /**
@@ -21,10 +19,12 @@ public class SimilarPairs {
             throw new IllegalArgumentException("Input list cannot be null");
         }
 
+        if (words.isEmpty()) {
+            return 0;
+        }
+
         // Map to store the frequency of each character signature
         Map<String, Integer> signatureFreq = new HashMap<>();
-//         A thypothetical chain of proceess is represented as a tree processes are numbered starting at 1, incremeneted by 1, every processes spaw
-// ns a number of processes equal 1 process, the second spawns 2 and so on . given a process number find the process number of its parent 
         
         // Convert each string to its signature and count frequencies
         for (String word : words) {
@@ -49,14 +49,24 @@ public class SimilarPairs {
      * @return Signature string
      */
     private static String getSignature(String word) {
-        char[] chars = word.toCharArray();
-        Set<Character> uniqueChars = new TreeSet<>();
-        for (char c : chars) {
-            uniqueChars.add(c);
+        if (word == null || word.isEmpty()) {
+            return "";
         }
+        
+        // Create boolean array for all possible characters
+        boolean[] present = new boolean[128];
+        
+        // Mark presence of each character
+        for (char c : word.toCharArray()) {
+            present[c] = true;
+        }
+        
+        // Build signature string
         StringBuilder sb = new StringBuilder();
-        for (char c : uniqueChars) {
-            sb.append(c);
+        for (int i = 0; i < 128; i++) {
+            if (present[i]) {
+                sb.append((char)i);
+            }
         }
         return sb.toString();
     }
