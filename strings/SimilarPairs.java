@@ -29,7 +29,7 @@ public class SimilarPairs {
         // Convert each string to its signature and count frequencies
         for (String word : words) {
             String signature = getSignature(word);
-            signatureFreq.merge(signature, 1, (a, b) -> a + b);
+            signatureFreq.put(signature, signatureFreq.getOrDefault(signature, 0) + 1);
         }
         
         // Calculate pairs using combination formula: n*(n-1)/2
