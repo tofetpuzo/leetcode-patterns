@@ -1,4 +1,9 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SimilarPairs {
     /**
@@ -18,6 +23,8 @@ public class SimilarPairs {
 
         // Map to store the frequency of each character signature
         Map<String, Integer> signatureFreq = new HashMap<>();
+//         A thypothetical chain of proceess is represented as a tree processes are numbered starting at 1, incremeneted by 1, every processes spaw
+// ns a number of processes equal 1 process, the second spawns 2 and so on . given a process number find the process number of its parent 
         
         // Convert each string to its signature and count frequencies
         for (String word : words) {
