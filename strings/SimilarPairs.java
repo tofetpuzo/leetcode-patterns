@@ -22,7 +22,7 @@ public class SimilarPairs {
         // Convert each string to its signature and count frequencies
         for (String word : words) {
             String signature = getSignature(word);
-            signatureFreq.merge(signature, 1, Integer::sum);
+            signatureFreq.merge(signature, 1, (a, b) -> a + b);
         }
         
         // Calculate pairs using combination formula: n*(n-1)/2
