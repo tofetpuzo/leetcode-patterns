@@ -1,0 +1,113 @@
+# Okay, let's compile a list of useful formulas that frequently pop up in coding exercises, especially those involving data structures and algorithms. I'll categorize them for easier understanding.
+
+# 1. Combinatorics & Counting
+
+# Combinations (Choosing Items without Order):
+
+# Formula: nCk = n! / (k! * (n - k)!) where 'n' is the total number of items, and 'k' is the number of items you choose.
+
+# Example Use Cases:
+
+# Finding the number of ways to select a team of k players from a pool of n.
+
+# Determining how many subsets of size k exist in a set of size n.
+
+# Simplified for choosing 2 items (like pairs): n * (n - 1) // 2
+
+# Simplified for choosing 3 items: n * (n - 1) * (n - 2) // 6
+
+# Permutations (Choosing Items with Order):
+
+# Formula: nPk = n! / (n - k)!
+
+# Example Use Cases:
+
+# Finding the number of ways to arrange k items from a set of n in a specific sequence.
+
+# Simplified for arranging all n items: n!
+
+# 2. Array & String Manipulation
+
+# Calculating Sum:
+
+# Sum of numbers from 1 to n: n * (n + 1) // 2
+
+# Example Use Case: Summing the first n natural numbers.
+
+# Sum of an Arithmetic Series: (n/2) * (first_term + last_term)
+
+# Calculating Length of a Substring or Subarray
+
+# Formula: end_index - start_index + 1
+
+# Finding the Middle Index:
+
+# Formula: (start_index + end_index) // 2 (Used in binary search, etc.)
+
+# 3. Geometric Formulas (Often Used in Grid/Matrix Problems)
+
+# Distance Formula (2D):
+
+# Formula: sqrt((x2 - x1)**2 + (y2 - y1)**2)
+
+# Distance Formula (Manhattan):
+
+# Formula: abs(x2 - x1) + abs(y2 - y1) (Used in grid problems where diagonal movement is not allowed)
+
+# 4. Tree Traversal and Graph Algorithms
+
+# Number of nodes in a full binary tree of depth d: 2**(d + 1) - 1
+
+# Number of leaf nodes in a complete binary tree of depth d: 2**d
+
+# Parent index in a heap: (index - 1) // 2
+
+# Left child index in a heap: 2 * index + 1
+
+# Right child index in a heap: 2 * index + 2
+
+# 5. Dynamic Programming
+
+# Fibonacci Sequence:
+
+# dp[i] = dp[i - 1] + dp[i - 2]
+
+# Knapsack/Subset Sum Variations (Often Involve Recursion and Table Lookups):
+
+# dp[i][j] = max(dp[i-1][j], values[i] + dp[i-1][j-weights[i]])
+
+# 6. Common Algorithmic Patterns
+
+# Average Calculation: sum / count
+
+# Calculating a Product: Typically just iterative multiplication through the numbers of interest.
+
+# Modular Arithmetic:
+
+# (a + b) % m = (a % m + b % m) % m
+
+# (a * b) % m = (a % m * b % m) % m
+
+# 7. Probability
+
+# Probability of an event: number of favorable outcomes / total number of outcomes
+
+# Important Considerations:
+
+# Integer Division (//) vs. Float Division (/): Use // when you need an integer result and / when you need a float result.
+
+# Edge Cases: Always consider cases like empty arrays, zero-length strings, etc.
+
+# Overflow: Be mindful of potential integer overflow issues, especially when dealing with large factorials. Use modulo if necessary.
+
+# How to Use This List:
+
+# Problem Analysis: When you encounter a problem, think if any of these general formulas might be useful.
+
+# Specific Details: Adapt the formulas based on the constraints and specific requirements.
+
+# Efficiency: Try to use efficient mathematical formulas to avoid unnecessary loops or complex calculations.
+
+# Memorization: Over time, you'll become familiar with the commonly used ones.
+
+# This is not exhaustive, but it's a solid collection of useful formulas that will aid you greatly in solving coding problems. Let me know if you have any specific problem type in mind and we can explore even more specialized formulas!
