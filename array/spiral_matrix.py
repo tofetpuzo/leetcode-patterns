@@ -48,7 +48,7 @@ def spiralOrder(matrix):
 
         max_col -= 1
 
-        if min_col < max_col and min_row and max_row:
+        if min_col < max_col and min_row < max_row:
             # left
             for col in range(max_col- 1, min_col-1, -1):
                 res.append(matrix[row][col])
