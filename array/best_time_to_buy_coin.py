@@ -27,22 +27,23 @@
 # 1 <= prices.length <= 105
 # 0 <= prices[i] <= 104
 
+
 def maxProfit(prices) -> int:
     """
-        :type prices: List[int]
-        :rtype: int
-        """
+    :type prices: List[int]
+    :rtype: int
+    """
     max_profit = 0
     day_price = prices[0]
     for num in prices:
-        min_price_seen_so_far = min(day_price, num) 
-        day_price = min_price_seen_so_far
-        if min_price_seen_so_far < num:
-            total_buy = num - min_price_seen_so_far
+        day_price = min(day_price, num)
+        if day_price < num:
+            total_buy = num - day_price
             max_profit = max(max_profit, total_buy)
         else:
             max_profit = max_profit
     return max_profit
+
 
 # Time: O(n)
 # Space: O(1)
