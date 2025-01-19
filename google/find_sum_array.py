@@ -1,6 +1,4 @@
 # Find the largest subarray with sum 0
-
-
 # Function to find the length of the
 # largest subarray with sum 0
 def max_len(arr):
