@@ -1,4 +1,6 @@
-# Reduce a string of lowercase characters in range ascii[‘a’..’z’]by doing a series of operations. In each operation, select a pair of adjacent letters that match, and delete them.
+# Reduce a string of lowercase characters in range ascii[‘a’..’z’]by doing a series of operations.
+#
+# In each operation, select a pair of adjacent letters that match, and delete them.
 
 # Delete as many characters as possible using this method and return the resulting string. If the final string is empty, return Empty String
 
@@ -57,9 +59,6 @@
 # baab → bb → Empty String
 
 
-
-
-
 #
 # Complete the 'superReducedString' function below.
 #
@@ -67,11 +66,24 @@
 # The function accepts STRING s as parameter.
 #
 
-def superReducedString(s):
-    # Write your code here
-    def check_side_letters(s, left, right):
-        while left >= 0 and right < len(s) and s[left] == s[right]:
-            
-        
-    
-    
+from collections import defaultdict
+
+# Write your code here
+
+# "aaabccddd"
+
+
+def check_each_length(s):
+    stack = []
+    for c in s:
+        if stack and stack[-1] == c:
+            stack.pop()
+        else:
+            stack.append(c)
+
+    return "".join(stack) if stack else ""
+
+
+s = "aaabccddd"
+print(check_each_length(s))
+# aaabccddd → abccddd → abddd → abd
