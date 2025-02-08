@@ -38,7 +38,6 @@
 # 0 <= xi, yi <= n - 1
 # xi != yi
 # All the values timestampi are unique.
-from polars import col
 
 
 class Solution(object):
