@@ -26,6 +26,7 @@
 
 # Constraints:
 
+
 # 1 <= coins.length <= 12
 # 1 <= coins[i] <= 231 - 1
 # 0 <= amount <= 104
@@ -36,3 +37,56 @@ class Solution(object):
         :type amount: int
         :rtype: int
         """
+
+        # first approach: dynamic programming
+        dp = [float("inf")] * (amount + 1)
+        dp[0] = 0
+        for coin in coins:
+            for x in range(coin, amount + 1):
+                dp[x] = min(dp[x], dp[x - coin] + 1)
+        return dp[amount] if dp[amount] != float("inf") else -1
+
+        # second approach: memoization
+
+    def dfs(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        memo = {}
+
+        def helper(remaining):
+            if remaining < 0:
+                return float("inf")
+            if remaining == 0:
+                return 0
+            if remaining in memo:
+                return memo[remaining]
+
+            min_coins = float("inf")
+            for coin in coins:
+                res = helper(remaining - coin)
+                if res != float("inf"):
+                    min_coins = min(min_coins, res + 1)
+
+            memo[remaining] = min_coins
+            return min_coins
+
+        result = helper(amount)
+        return result if result != float("inf") else -1
+
+
+# Example usage:
+sol = Solution()
+print(sol.coinChange([1, 2, 5], 11))  # Output: 3
+print(sol.coinChange([2], 3))  # Output: -1
+print(sol.coinChange([1], 0))  # Output: 0
+print(sol.coinChange([1, 2, 5], 100))  # Output: 20
+print(sol.coinChange([186, 419, 83, 408], 6249))  # Output: 20
+# print(sol.dfs([1, 2, 5], 11))  # Output: 3
+
+
+# # Example usage:
+print(sol.dfs([1, 2, 5], 100))  # Output: 20
+print(sol.dfs([186, 419, 83, 408], 6249))  # Output: 20
