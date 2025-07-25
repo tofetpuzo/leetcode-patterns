@@ -43,28 +43,6 @@
 # 1 <= s.length <= 104
 # s consists of parentheses only '()[]{}'.
 
-def is_valid(s):
-    """
-    :type s: str
-    :rtype: bool
-    """
-    stack = []
-    mapping = {")": "(", "}": "{", "]": "["}
-    for char in s:
-        if char in mapping:
-            print(char)
-            top_element = stack.pop() if stack else '#'
-            if mapping[char] != top_element:
-                return False
-        else:
-            stack.append(char)
-    return not stack
-    
-
-print(is_valid("()")) # True`
-# print(is_valid("()[]{}")) # True
-# print(is_valid("(]")) # False`
-
 
 
 def is_alt_valid(s):
@@ -81,6 +59,7 @@ def is_alt_valid(s):
                 return False
     return not stack
 
-print(is_alt_valid("()")) # True`
+
+print(is_alt_valid("()")) # True
 print(is_alt_valid("()[]{}")) # True
-print(is_alt_valid("(]")) # False`
+print(is_alt_valid("(]")) # False

@@ -43,9 +43,9 @@ def summary_ranges(nums):
         return []
     
     i = 0
-    res = []
-    while i < len(nums):
-        start = i
+    res = []                      
+    while i < len(nums): 
+        start = i #3
         while i + 1 < len(nums) and nums[i+1] == nums[i] + 1:
             i+=1
         if start == i:
@@ -57,3 +57,9 @@ def summary_ranges(nums):
         i+=1
 
     return res
+
+# Example usage:
+# nums = [0, 1, 2, 4, 5, 7]
+# print(summary_ranges(nums))  # Output: ["0->2", "4->5", "7"]
+# nums = [0, 2, 3, 4, 6, 8, 9]
+# print(summary_ranges(nums))  # Output: ["0", "2->4", "6", "8->9"]
