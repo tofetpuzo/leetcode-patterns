@@ -3,7 +3,8 @@
 # Topics
 # conpanies icon
 # Companies
-# Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced binary search tree.
+# Given an integer array nums where the elements are sorted in ascending order, 
+# convert it to a height-balanced binary search tree.
 
  
 
@@ -43,7 +44,7 @@ class Solution:
         if not nums:
             return None
         
-        # inorder traversal to create a balanced BST
+        # preorder traversal to create a balanced BST
         mid = len(nums) // 2
         root = TreeNode(nums[mid])
         root.left = self.sortedArrayToBST(nums[:mid])

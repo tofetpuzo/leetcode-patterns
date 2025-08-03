@@ -29,8 +29,6 @@
 # 0 <= digits.length <= 4
 # digits[i] is a digit in the range ['2', '9'].
 
-from unicodedata import digit
-
 
 class Solution:
     def letterCombinations(self, digits: str) -> list[str]:
@@ -59,4 +57,10 @@ class Solution:
                 backtrack(index + 1, path + letter)
         backtrack(0, "")
         return res
+
                 
+# example usage
+sol = Solution()
+print(sol.letterCombinations("23"))  # Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+print(sol.letterCombinations(""))  # Output: []
+print(sol.letterCombinations("2"))  # Output: ["a","b","c"]
