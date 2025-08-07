@@ -54,7 +54,7 @@ from typing import List
 class Solution:
     def snakesAndLadders(self, board: List[List[int]]) -> int:
         n = len(board)
-        cells = [None] * (n**2 + 1)
+        cells = [None] * (n**2 + 1) # to map cell numbers to their coordinates
         label = 1
         columns = list(range(0, n))
         for row in range(n - 1, -1, -1):
