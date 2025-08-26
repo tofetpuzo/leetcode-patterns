@@ -31,7 +31,30 @@
 # 0 <= bank.length <= 10
 # startGene.length == endGene.length == bank[i].length == 8
 # startGene, endGene, and bank[i] consist of only the characters ['A', 'C', 'G', 'T'].
-
+from collections import deque
+from typing import List
 class Solution:
     def minMutation(self, startGene: str, endGene: str, bank: List[str]) -> int:
+        gene_bank = set(bank)
+        if endGene not in gene_bank:
+            return -1
+        
+        queue = deque([(startGene, 0)])
+        visited = set([startGene])
+        genes = ['A', 'C', 'G', 'T']
+        
+        while queue:
+            current, mutations = queue.popleft()
+            if current == endGene:
+                return mutations
+            
+            for i in range(len(current)):
+                for g in genes:
+                    if g != current[i]:
+                        mutated = current[:i] + g + current[i+1:]
+                        if mutated in gene_bank and mutated not in visited:
+                            visited.add(mutated)
+                            queue.append((mutated, mutations + 1))
+        
+        return -1
       
