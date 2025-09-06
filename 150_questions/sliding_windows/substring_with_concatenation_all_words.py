@@ -118,23 +118,110 @@ class Solution:
                 result.append(left)
 
 
-# Let me explain what we just implemented:                                                                                         
+# DETAILED LINE-BY-LINE WALKTHROUGH WITH EXAMPLES
+# Let's trace through s = "barfoothefoobarman", words = ["foo","bar"]
 
-# Key Insights:                                                                                                                    
+# STEP 1: Initial setup
+# s = "barfoothefoobarman" (length 18)
+# words = ["foo", "bar"]
+# word_len = 3 (each word is 3 chars)
+# total_words = 2 (we have 2 words)
+# total_len = 6 (3 * 2 = 6 chars total for concatenation)
+# word_count = {"foo": 1, "bar": 1} (frequency map)
 
-#  1 Optimization: Instead of checking every position in s, we only need to check word_len different starting positions (0, 1, 2,  
-#    ..., word_len-1). Why? Because if a valid concatenation starts at position i, the next possible one can only start at i +     
-#    word_len, i + 2*word_len, etc.                                                                                                
-#  2 Sliding Window: For each starting position, we use a sliding window that moves in steps of word_len. We maintain:             
-#     • seen: frequency count of words in current window                                                                           
-#     • left: left boundary of the window                                                                                          
-#  3 Window Management:                                                                                                            
-#     • If we encounter a word not in words, we reset the window                                                                   
-#     • If we have too many of a word, we shrink from the left                                                                     
-#     • If window size equals total required length and word counts match, we found a valid position                               
+# STEP 2: Why only check 3 starting positions?
+# If word_len = 3, we only need to check positions 0, 1, 2
+# Why? Because any valid match must align on word boundaries
+# Position 0: check 0, 3, 6, 9, 12, 15...
+# Position 1: check 1, 4, 7, 10, 13, 16...  
+# Position 2: check 2, 5, 8, 11, 14, 17...
 
-# Example walkthrough with s = "barfoothefoobarman", words = ["foo","bar"]:                                                        
+# STEP 3: Detailed trace for starting position 0
+# s = "barfoothefoobarman"
+#      012345678901234567
+#      ^     ^     ^     ^  (positions 0, 3, 6, 9, 12, 15)
 
-#  • word_len = 3, total_words = 2, total_len = 6                                                                                  
-#  • We check starting positions 0, 1, 2                                                                                           
-#  • At position 0: "bar" + "foo" = valid ✓  
+# Iteration 1: right=0, word="bar"
+# - "bar" is in word_count ✓
+# - seen = {"bar": 1}
+# - left = 0, window size = 3, need 6 → continue
+
+# Iteration 2: right=3, word="foo" 
+# - "foo" is in word_count ✓
+# - seen = {"bar": 1, "foo": 1}
+# - left = 0, window size = 6, need 6 → MATCH! Add 0 to result
+
+# Iteration 3: right=6, word="the"
+# - "the" is NOT in word_count ✗
+# - Reset: seen = {}, left = 9
+
+# Iteration 4: right=9, word="foo"
+# - "foo" is in word_count ✓
+# - seen = {"foo": 1}
+# - left = 9, window size = 3, need 6 → continue
+
+# Iteration 5: right=12, word="bar"
+# - "bar" is in word_count ✓  
+# - seen = {"foo": 1, "bar": 1}
+# - left = 9, window size = 6, need 6 → MATCH! Add 9 to result
+
+# Final result: [0, 9] ✓
+
+
+def test_with_detailed_trace():
+    """
+    Test function that shows exactly how the algorithm works
+    """
+    solution = Solution()
+    
+    # Test case 1: s = "barfoothefoobarman", words = ["foo","bar"]
+    s = "barfoothefoobarman"
+    words = ["foo", "bar"]
+    
+    print(f"Input: s = '{s}', words = {words}")
+    print(f"String positions: {' '.join(f'{i:2d}' for i in range(len(s)))}")
+    print(f"String chars:     {' '.join(f' {c}' for c in s)}")
+    print()
+    
+    # Show the setup
+    word_len = len(words[0])
+    total_words = len(words)
+    total_len = word_len * total_words
+    
+    print(f"word_len = {word_len}")
+    print(f"total_words = {total_words}")  
+    print(f"total_len = {total_len}")
+    print()
+    
+    # Show word frequency map
+    word_count = {}
+    for word in words:
+        word_count[word] = word_count.get(word, 0) + 1
+    print(f"word_count = {word_count}")
+    print()
+    
+    # Show which starting positions we'll check
+    print(f"We'll check starting positions: {list(range(word_len))}")
+    print()
+    
+    # Trace through starting position 0
+    print("=== TRACING STARTING POSITION 0 ===")
+    print("Checking positions: 0, 3, 6, 9, 12, 15...")
+    
+    for pos in range(0, len(s) - word_len + 1, word_len):
+        if pos + word_len <= len(s):
+            word = s[pos:pos + word_len]
+            print(f"Position {pos:2d}: word = '{word}' {'✓' if word in word_count else '✗'}")
+    
+    print()
+    result = solution.findSubstring(s, words)
+    print(f"Final result: {result}")
+    
+    # Verify the results
+    print("\n=== VERIFICATION ===")
+    for start in result:
+        substring = s[start:start + total_len]
+        print(f"Position {start}: '{substring}' = '{s[start:start+3]}' + '{s[start+3:start+6]}'")
+
+# Uncomment to run the trace:
+# test_with_detailed_trace()
