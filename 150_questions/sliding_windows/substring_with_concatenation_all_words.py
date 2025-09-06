@@ -116,3 +116,25 @@ class Solution:
             # Check if current window contains exactly what we need
             if right - left + word_len == total_words * word_len:
                 result.append(left)
+
+
+# Let me explain what we just implemented:                                                                                         
+
+# Key Insights:                                                                                                                    
+
+#  1 Optimization: Instead of checking every position in s, we only need to check word_len different starting positions (0, 1, 2,  
+#    ..., word_len-1). Why? Because if a valid concatenation starts at position i, the next possible one can only start at i +     
+#    word_len, i + 2*word_len, etc.                                                                                                
+#  2 Sliding Window: For each starting position, we use a sliding window that moves in steps of word_len. We maintain:             
+#     • seen: frequency count of words in current window                                                                           
+#     • left: left boundary of the window                                                                                          
+#  3 Window Management:                                                                                                            
+#     • If we encounter a word not in words, we reset the window                                                                   
+#     • If we have too many of a word, we shrink from the left                                                                     
+#     • If window size equals total required length and word counts match, we found a valid position                               
+
+# Example walkthrough with s = "barfoothefoobarman", words = ["foo","bar"]:                                                        
+
+#  • word_len = 3, total_words = 2, total_len = 6                                                                                  
+#  • We check starting positions 0, 1, 2                                                                                           
+#  • At position 0: "bar" + "foo" = valid ✓  
