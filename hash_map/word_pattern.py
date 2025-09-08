@@ -46,3 +46,32 @@
 # s contains only lowercase English letters and spaces ' '.
 # s does not contain any leading or trailing spaces.
 # All the words in s are separated by a single space.
+
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        words = s.split()
+        
+        # If lengths don't match, no bijection is possible
+        if len(pattern) != len(words):
+            return False
+        
+        # Create bidirectional mappings
+        char_to_word = {}
+        word_to_char = {}
+        
+        for char, word in zip(pattern, words):
+            # Check if char already has a mapping
+            if char in char_to_word:
+                if char_to_word[char] != word:
+                    return False
+            else:
+                char_to_word[char] = word
+            
+            # Check if word already has a mapping
+            if word in word_to_char:
+                if word_to_char[word] != char:
+                    return False
+            else:
+                word_to_char[word] = char
+        
+        return True
