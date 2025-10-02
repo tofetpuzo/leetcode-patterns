@@ -33,7 +33,22 @@ class Solution:
     def trailingZeroes(self, n: int) -> int:
         count = 0
         # Count the number of factors of 5 in n!
-        #  why 5? because there are usually more factors of 2 than 5 in n!
+        # 
+        # WHY THIS WORKS:
+        # Trailing zeros are created by factors of 10, and 10 = 2 × 5
+        # In any factorial n!, there are always more factors of 2 than factors of 5
+        # So the number of trailing zeros = number of pairs of (2,5) = number of factors of 5
+        #
+        # EXAMPLES:
+        # 5! = 120 has one factor of 5 (from 5) → 1 trailing zero
+        # 10! has factors of 5 from: 5, 10 → 2 trailing zeros  
+        # 25! has factors of 5 from: 5,10,15,20,25 → but 25=5² contributes 2 factors → total 6
+        #
+        # ALGORITHM:
+        # n//5 gives multiples of 5: 5,10,15,20,25,30...
+        # n//25 gives multiples of 25: 25,50,75... (each contributes extra factor of 5)
+        # n//125 gives multiples of 125: 125,250... (each contributes another extra factor)
+        # We keep dividing by 5 to count all these contributions
         while n >= 5:
             n //= 5
             count += n
