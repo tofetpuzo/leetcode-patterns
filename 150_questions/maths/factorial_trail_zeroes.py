@@ -41,7 +41,7 @@ class Solution:
         #
         # EXAMPLES:
         # 5! = 120 has one factor of 5 (from 5) → 1 trailing zero
-        # 10! has factors of 5 from: 5, 10 → 2 trailing zeros  
+        # 10! = 3,628,800 has factors of 5 from: 5, 10 → 2 factors of 5 → 2 trailing zeros  
         # 25! has factors of 5 from: 5,10,15,20,25 → but 25=5² contributes 2 factors → total 6
         #
         # ALGORITHM:
