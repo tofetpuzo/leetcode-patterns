@@ -49,6 +49,7 @@ class Solution:
                 if dp[j] and s[j:i] in wordSet:
                     dp[i] = True
                     break  # Found one valid segmentation, no need to check more
+                          # We only need to know IF segmentation is possible, not count all ways
 
         return dp[len(s)]  # Return whether the entire string can be segmented
 # WHY THIS WORKS:
@@ -63,11 +64,16 @@ class Solution:
 # i=1: s[0:1]="l" → no valid split → dp[1] = False
 # i=2: s[0:2]="le" → no valid split → dp[2] = False  
 # i=3: s[0:3]="lee" → no valid split → dp[3] = False
-# i=4: s[0:4]="leet" → j=0: dp[0]=True and s[0:4]="leet" in wordSet → dp[4] = True
+# i=4: s[0:4]="leet" → j=0: dp[0]=True and s[0:4]="leet" in wordSet → dp[4] = True (break early!)
 # i=5: s[0:5]="leetc" → no valid split → dp[5] = False
 # i=6: s[0:6]="leetco" → no valid split → dp[6] = False
 # i=7: s[0:7]="leetcod" → no valid split → dp[7] = False  
-# i=8: s[0:8]="leetcode" → j=4: dp[4]=True and s[4:8]="code" in wordSet → dp[8] = True
+# i=8: s[0:8]="leetcode" → j=4: dp[4]=True and s[4:8]="code" in wordSet → dp[8] = True (break early!)
+#
+# WHY BREAK EARLY?
+# Once we find ANY valid way to segment s[0:i], we know dp[i] should be True.
+# We don't need to find ALL possible ways - just knowing one exists is enough.
+# This is an optimization that doesn't change correctness but improves performance.
 #
 # Time Complexity: O(n^2) where n is the length of the string s
 # Space Complexity: O(n) for the dp array and O(m) for the wordSet
