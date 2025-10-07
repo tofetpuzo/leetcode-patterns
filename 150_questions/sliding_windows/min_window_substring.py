@@ -43,43 +43,91 @@
 # Continue expanding the right and left pointers until you reach the end of s.
 # Hash Table
 
+# BEGINNER EXPLANATION:
+# What this problem is asking: Find the shortest piece of string 's' that contains all characters from string 't' (including duplicates).
+# Strategy (Sliding Window): 
+# 1. EXPAND right pointer until window contains all characters from 't'
+# 2. CONTRACT left pointer while maintaining all characters (find minimum)
+# 3. REPEAT until we've checked all possibilities
+# Think of it like adjusting a rubber band around letters on a table - stretch it right until you capture everything you need, then squeeze it left as much as possible while keeping everything inside!
+
+# Import helpful tools:
+# Counter: Counts how many times each character appears in a string
+# defaultdict: A dictionary that gives you 0 when you ask for a key that doesn't exist yet
 from collections import Counter, defaultdict
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
 
+        # If either string is empty, return empty string (no solution possible)
         if not s or not t:
             return ""
 
+        # Count all characters in 't'. Example: if t = "ABC", then dict_t = {'A': 1, 'B': 1, 'C': 1}
         dict_t = Counter(t)
+        
+        # How many unique characters we need to find. Example: for t = "ABC", we need 3 unique characters
         required = len(dict_t)
 
+        # Create two pointers (like fingers pointing at positions):
+        # l = left pointer (start of our window), r = right pointer (end of our window)
         l, r = 0, 0
+        
+        # Counter for how many unique characters we've satisfied so far
+        # We increment this when we have enough of a character
         formed = 0
+        
+        # Keep track of character counts in our current window
+        # Starts at 0 for any character we haven't seen
         window_counts = defaultdict(int)
 
+        # Store our best answer so far: (window_length, left_position, right_position)
+        # float("inf") = infinity (very large number)
         ans = float("inf"), None, None  # window length, left, right
 
+        # Keep expanding our window to the right until we reach the end
         while r < len(s):
+            # Get the character at position 'r' and add 1 to its count in our window
             character = s[r]
             window_counts[character] += 1
 
+            # Check if we just satisfied a character requirement:
+            # - Is this character needed in 't'?
+            # - Do we now have exactly the right amount?
+            # - If yes, increment 'formed' (we satisfied one more unique character)
             if character in dict_t and window_counts[character] == dict_t[character]:
                 formed += 1
 
+            # While our window contains all required characters, try to shrink it from the left
             while l <= r and formed == required:
+                # Get the character we're about to remove from the left
                 character = s[l]
 
+                # If current window is smaller than our best answer:
+                # r - l + 1 = current window size
+                # Update our best answer with current window info
                 if r - l + 1 < ans[0]:
                     ans = (r - l + 1, l, r)
 
+                # Remove the left character from our window count
                 window_counts[character] -= 1
+                
+                # Check if removing this character broke a requirement:
+                # - Was this character needed?
+                # - Do we now have too few of it?
+                # - If yes, decrement 'formed' (we no longer satisfy this character)
                 if character in dict_t and window_counts[character] < dict_t[character]:
                     formed -= 1
 
+                # Move left pointer right (shrink window from left)
                 l += 1    
 
+            # Move right pointer right (expand window)
             r += 1    
 
+        # Return the result:
+        # - If we never found a valid window, return empty string
+        # - Otherwise, return the substring from our best answer
         return "" if ans[0] == float("inf") else s[ans[1]: ans[2] + 1]
         
 
