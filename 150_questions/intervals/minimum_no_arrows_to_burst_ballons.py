@@ -37,3 +37,18 @@
 # 1 <= points.length <= 105
 # points[i].length == 2
 # -231 <= xstart < xend <= 231 - 1
+
+# SOLUTION STEPS:
+# 1. Sort the balloons by their end points (second element of each interval)
+# 2. Initialize arrow count to 1 (we need at least one arrow)
+# 3. Keep track of the position where the last arrow was shot
+# 4. Iterate through sorted balloons:
+#    - If current balloon's start is after the last arrow position,
+#      we need a new arrow (increment count and update arrow position)
+#    - Otherwise, the current balloon can be burst by the existing arrow
+# 5. Return the total arrow count
+
+class Solution:
+    def findMinArrowShots(self, points: list[list[int]]) -> int:
+        # Your implementation here
+        pass
