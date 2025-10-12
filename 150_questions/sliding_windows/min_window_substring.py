@@ -39,17 +39,21 @@
 # which would have all the characters from t.
 # Expand the right pointer until all the characters of t are covered.
 # Sliding Window
-# Once all the characters are covered, move the left pointer and ensure that all the characters are still covered to minimize the subarray size.
+# Once all the characters are covered, move the left pointer and ensure that all the characters 
+# are still covered to minimize the subarray size.
 # Continue expanding the right and left pointers until you reach the end of s.
 # Hash Table
 
 # BEGINNER EXPLANATION:
-# What this problem is asking: Find the shortest piece of string 's' that contains all characters from string 't' (including duplicates).
+# What this problem is asking: Find the shortest piece of string 's' that contains all characters 
+# from string 't' (including duplicates).
 # Strategy (Sliding Window): 
 # 1. EXPAND right pointer until window contains all characters from 't'
 # 2. CONTRACT left pointer while maintaining all characters (find minimum)
 # 3. REPEAT until we've checked all possibilities
-# Think of it like adjusting a rubber band around letters on a table - stretch it right until you capture everything you need, then squeeze it left as much as possible while keeping everything inside!
+# Think of it like adjusting a rubber band around letters on a table - 
+# stretch it right until you capture everything you need, then squeeze it left as much as 
+# possible while keeping everything inside!
 
 # Import helpful tools:
 # Counter: Counts how many times each character appears in a string
