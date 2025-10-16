@@ -44,3 +44,33 @@
 
 # 1 <= tokens.length <= 104
 # tokens[i] is either an operator: "+", "-", "*", or "/", or an integer in the range [-200, 200].
+
+
+class Solution:
+    def evalRPN(self, tokens: list[str]) -> int:
+        stack = []
+        operators = {'+', '-', '*', '/'}
+        
+        for token in tokens:
+            if token not in operators:
+                # If the token is a number, push it onto the stack
+                stack.append(int(token))
+            else:
+                # The token is an operator; pop the top two numbers from the stack
+                b = stack.pop()
+                a = stack.pop()
+                if token == '+':
+                    result = a + b
+                elif token == '-':
+                    result = a - b
+                elif token == '*':
+                    result = a * b
+                elif token == '/':
+                    # Perform integer division that truncates towards zero
+                    result = int(a / b)
+                
+                # Push the result back onto the stack
+                stack.append(result)
+        
+        # The final result will be the only element left in the stack
+        return stack[0]
